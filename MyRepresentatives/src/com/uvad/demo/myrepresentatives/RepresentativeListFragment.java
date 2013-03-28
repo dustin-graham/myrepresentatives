@@ -66,11 +66,13 @@ public class RepresentativeListFragment extends ListFragment implements LoaderCa
 		new String[] { RepresentativeTable.NAME }, new int[] { android.R.id.text1 }, 0);
 
 	setListAdapter(mAdapter);
-	setZipCode(mZipCode);
+	performRepSync();
+	getLoaderManager().initLoader(0, null, this);
     }
 
     private void performRepSync() {
-	//fire off a request to synchronize the representatives at the current zip code
+	// fire off a request to synchronize the representatives at the current
+	// zip code
 	Intent i = new Intent(getActivity(), RepresentativeService.class);
 	i.putExtra(RepresentativeService.ARG_ZIP, mZipCode);
 	i.setAction(Intent.ACTION_SYNC);
@@ -146,15 +148,11 @@ public class RepresentativeListFragment extends ListFragment implements LoaderCa
 
 	mActivatedPosition = position;
     }
-    
+
     public void setZipCode(String zipCode) {
 	mZipCode = zipCode;
 	performRepSync();
-	if (mLoader != null) {
-	    getLoaderManager().restartLoader(0, null, this);
-	} else {
-	    getLoaderManager().initLoader(0, null, this);
-	}
+	getLoaderManager().restartLoader(0, null, this);
     }
 
     @Override

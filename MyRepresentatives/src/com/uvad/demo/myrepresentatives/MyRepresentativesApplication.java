@@ -19,6 +19,7 @@ public class MyRepresentativesApplication extends Application {
         //generateDummyData();
     }
     
+    @SuppressWarnings("unused")
     private void generateDummyData() {
 	//delete existing records so we have a clean slate
 	getContentResolver().delete(Provider.REPRESENTATIVE_CONTENT_URI, null, null);

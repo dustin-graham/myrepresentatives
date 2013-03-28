@@ -37,6 +37,7 @@
             android:name="com.uvad.demo.myrepresentatives.contentprovider.Provider"
             android:authorities="com.uvad.demo.myrepresentatives.provider.Model" 
             android:exported="false"/>
+        <service android:name=".service.RepresentativeService"></service>
     </application>
 
 </manifest>

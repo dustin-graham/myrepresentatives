@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.ListFragment;
 import android.app.LoaderManager.LoaderCallbacks;
 import android.content.CursorLoader;
+import android.content.Intent;
 import android.content.Loader;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -14,7 +15,7 @@ import android.widget.SimpleCursorAdapter;
 
 import com.uvad.demo.myrepresentatives.contentprovider.Provider;
 import com.uvad.demo.myrepresentatives.database.tables.RepresentativeTable;
-import com.uvad.demo.myrepresentatives.dummy.DummyContent;
+import com.uvad.demo.myrepresentatives.service.RepresentativeService;
 
 /**
  * A list fragment representing a list of Representatives. This fragment also
@@ -53,6 +54,7 @@ public class RepresentativeListFragment extends ListFragment implements LoaderCa
      */
     private int mActivatedPosition = ListView.INVALID_POSITION;
 
+    private CursorLoader mLoader;
     private CursorAdapter mAdapter;
     private String mZipCode = DEFAULT_ZIP;
 
@@ -64,8 +66,15 @@ public class RepresentativeListFragment extends ListFragment implements LoaderCa
 		new String[] { RepresentativeTable.NAME }, new int[] { android.R.id.text1 }, 0);
 
 	setListAdapter(mAdapter);
+	setZipCode(mZipCode);
+    }
 
-	getLoaderManager().initLoader(0, null, this);
+    private void performRepSync() {
+	//fire off a request to synchronize the representatives at the current zip code
+	Intent i = new Intent(getActivity(), RepresentativeService.class);
+	i.putExtra(RepresentativeService.ARG_ZIP, mZipCode);
+	i.setAction(Intent.ACTION_SYNC);
+	getActivity().startService(i);
     }
 
     @Override
@@ -137,12 +146,23 @@ public class RepresentativeListFragment extends ListFragment implements LoaderCa
 
 	mActivatedPosition = position;
     }
+    
+    public void setZipCode(String zipCode) {
+	mZipCode = zipCode;
+	performRepSync();
+	if (mLoader != null) {
+	    getLoaderManager().restartLoader(0, null, this);
+	} else {
+	    getLoaderManager().initLoader(0, null, this);
+	}
+    }
 
     @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
-	return new CursorLoader(getActivity(), Provider.REPRESENTATIVE_CONTENT_URI, new String[] {
+	mLoader = new CursorLoader(getActivity(), Provider.REPRESENTATIVE_CONTENT_URI, new String[] {
 		RepresentativeTable.ID, RepresentativeTable.NAME, RepresentativeTable.ZIP },
 		RepresentativeTable.ZIP + " = ?", new String[] { mZipCode }, RepresentativeTable.NAME + " ASC");
+	return mLoader;
     }
 
     @Override

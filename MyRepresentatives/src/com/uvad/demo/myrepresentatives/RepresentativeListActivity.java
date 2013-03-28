@@ -3,6 +3,8 @@ package com.uvad.demo.myrepresentatives;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 
 /**
  * An activity representing a list of Representatives. This activity has
@@ -20,19 +22,21 @@ import android.os.Bundle;
  * {@link RepresentativeListFragment.Callbacks} interface to listen for item
  * selections.
  */
-public class RepresentativeListActivity extends Activity implements RepresentativeListFragment.Callbacks {
+public class RepresentativeListActivity extends Activity implements RepresentativeListFragment.Callbacks, ZipFormDialogFragment.EditZipDialogListener {
 
     /**
      * Whether or not the activity is in two-pane mode, i.e. running on a tablet
      * device.
      */
     private boolean mTwoPane;
+    private RepresentativeListFragment mFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 	super.onCreate(savedInstanceState);
 	setContentView(R.layout.activity_representative_list);
 
+	mFragment = ((RepresentativeListFragment) getFragmentManager().findFragmentById(R.id.representative_list));
 	if (findViewById(R.id.representative_detail_container) != null) {
 	    // The detail container view will be present only in the
 	    // large-screen layouts (res/values-large and
@@ -42,11 +46,26 @@ public class RepresentativeListActivity extends Activity implements Representati
 
 	    // In two-pane mode, list items should be given the
 	    // 'activated' state when touched.
-	    ((RepresentativeListFragment) getFragmentManager().findFragmentById(R.id.representative_list))
-		    .setActivateOnItemClick(true);
+	    mFragment.setActivateOnItemClick(true);
 	}
+	
 
-	// TODO: If exposing deep links into your app, handle intents here.
+    }
+    
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+	getMenuInflater().inflate(R.menu.main_menu, menu);
+	return true;
+    }
+    
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.action_set_zip) {
+            ZipFormDialogFragment zipDialog = new ZipFormDialogFragment();
+            zipDialog.show(getFragmentManager(), "zipForm");
+            return true;
+        }
+        return false;
     }
 
     /**
@@ -73,5 +92,10 @@ public class RepresentativeListActivity extends Activity implements Representati
 	    detailIntent.putExtra(RepresentativeDetailFragment.ARG_ITEM_ID, id);
 	    startActivity(detailIntent);
 	}
+    }
+
+    @Override
+    public void onZipEntered(String zip) {
+	mFragment.setZipCode(zip);
     }
 }

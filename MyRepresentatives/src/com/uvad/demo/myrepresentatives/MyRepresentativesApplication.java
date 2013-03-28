@@ -16,7 +16,7 @@ public class MyRepresentativesApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        generateDummyData();
+        //generateDummyData();
     }
     
     private void generateDummyData() {

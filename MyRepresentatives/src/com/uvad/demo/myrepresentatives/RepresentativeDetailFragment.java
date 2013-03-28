@@ -68,7 +68,7 @@ public class RepresentativeDetailFragment extends Fragment {
 	mNameTextView.setText(mRepresentative.getName());
 	mPartyTextView.setText(mRepresentative.getParty());
 	mStateTextView.setText(mRepresentative.getState());
-	mDistrictTextView.setText(String.valueOf(mRepresentative.getDistrict()));
+	mDistrictTextView.setText(mRepresentative.getDistrict());
 	mPhoneTextView.setText(mRepresentative.getPhone());
 	mOfficeTextView.setText(mRepresentative.getOffice());
 	mLinkTextView.setText(mRepresentative.getLink());

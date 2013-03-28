@@ -1,0 +1,3 @@
+[submodule "Retrofit"]
+	path = Retrofit
+	url = git@github.com:dustin-graham/retrofit.git

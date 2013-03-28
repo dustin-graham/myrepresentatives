@@ -35,6 +35,10 @@
         <element xmi:type="ecore:EAttribute" href="model.ecore#//Representative/zip"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_oC2tsZdnEeKlXsFPY61WrQ"/>
       </children>
+      <children xmi:type="notation:Node" xmi:id="_JlmRUJd4EeKlXsFPY61WrQ" type="2001">
+        <element xmi:type="ecore:EAttribute" href="model.ecore#//Representative/uniqueId"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_JlmRUZd4EeKlXsFPY61WrQ"/>
+      </children>
       <styles xmi:type="notation:DrawerStyle" xmi:id="_fQeSEpdnEeKlXsFPY61WrQ"/>
       <styles xmi:type="notation:SortingStyle" xmi:id="_fQeSE5dnEeKlXsFPY61WrQ"/>
       <styles xmi:type="notation:FilteringStyle" xmi:id="_fQeSFJdnEeKlXsFPY61WrQ"/>

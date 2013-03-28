@@ -1,0 +1,8 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <item
+        android:id="@+id/action_set_zip"
+        android:orderInCategory="100"
+        android:title="@string/zip" android:titleCondensed="@string/zip" android:showAsAction="always" android:visible="true"/>
+
+</menu>

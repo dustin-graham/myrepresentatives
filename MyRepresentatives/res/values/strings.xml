@@ -8,5 +8,7 @@
     <string name="phone">Phone:</string>
     <string name="office">Office:</string>
     <string name="link">Link:</string>
+    <string name="zip">Zip</string>
+    <string name="zip_code">Zip Code:</string>
 
 </resources>

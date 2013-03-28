@@ -10,7 +10,7 @@ import com.uvad.demo.myrepresentatives.database.tables.RepresentativeTable;
  * Generated Class. Do not modify!
  * 
  * @author MDSDACP Team - goetzfred@fh-bingen.de 
- * @date 2013.03.27	 
+ * @date 2013.03.28	 
  */
 public class Representative {
 
@@ -18,11 +18,12 @@ public class Representative {
 	private java.lang.String name;
 	private java.lang.String party;
 	private java.lang.String state;
-	private int district;
+	private java.lang.String district;
 	private java.lang.String phone;
 	private java.lang.String office;
 	private java.lang.String link;
 	private java.lang.String zip;
+	private java.lang.String uniqueid;
 
 	private final ContentValues values = new ContentValues();
 
@@ -37,7 +38,7 @@ public class Representative {
 				.getColumnIndex(RepresentativeTable.PARTY)));
 		setState(cursor.getString(cursor
 				.getColumnIndex(RepresentativeTable.STATE)));
-		setDistrict(cursor.getInt(cursor
+		setDistrict(cursor.getString(cursor
 				.getColumnIndex(RepresentativeTable.DISTRICT)));
 		setPhone(cursor.getString(cursor
 				.getColumnIndex(RepresentativeTable.PHONE)));
@@ -46,6 +47,8 @@ public class Representative {
 		setLink(cursor.getString(cursor
 				.getColumnIndex(RepresentativeTable.LINK)));
 		setZip(cursor.getString(cursor.getColumnIndex(RepresentativeTable.ZIP)));
+		setUniqueId(cursor.getString(cursor
+				.getColumnIndex(RepresentativeTable.UNIQUEID)));
 
 	}
 
@@ -128,9 +131,9 @@ public class Representative {
 	/**
 	 * Set district and set content value
 	 *
-	 * @param district from type int
+	 * @param district from type java.lang.String
 	 */
-	public void setDistrict(final int district) {
+	public void setDistrict(final java.lang.String district) {
 		this.district = district;
 		this.values.put(RepresentativeTable.DISTRICT, district);
 	}
@@ -138,9 +141,9 @@ public class Representative {
 	/**
 	 * Get district
 	 *
-	 * @return district from type int				
+	 * @return district from type java.lang.String				
 	 */
-	public int getDistrict() {
+	public java.lang.String getDistrict() {
 		return this.district;
 	}
 
@@ -218,6 +221,25 @@ public class Representative {
 	 */
 	public java.lang.String getZip() {
 		return this.zip;
+	}
+
+	/**
+	 * Set uniqueid and set content value
+	 *
+	 * @param uniqueid from type java.lang.String
+	 */
+	public void setUniqueId(final java.lang.String uniqueid) {
+		this.uniqueid = uniqueid;
+		this.values.put(RepresentativeTable.UNIQUEID, uniqueid);
+	}
+
+	/**
+	 * Get uniqueid
+	 *
+	 * @return uniqueid from type java.lang.String				
+	 */
+	public java.lang.String getUniqueId() {
+		return this.uniqueid;
 	}
 
 	/**

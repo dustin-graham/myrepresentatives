@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">MyRepresentatives</string>
+    <string name="title_representative_detail">Representative Detail</string>
+    <string name="state">State:</string>
+    <string name="district">District:</string>
+    <string name="phone">Phone:</string>
+    <string name="office">Office:</string>
+    <string name="link">Link:</string>
+
+</resources>
